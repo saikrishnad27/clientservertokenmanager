@@ -1,0 +1,36 @@
+syntax = "proto3";
+package AOSProject_2;
+option go_package ="./AOSProject_2";
+
+
+
+message Key{
+    string Id=1;
+}
+
+message Wkey{
+    Key key=1;
+    string name=2;
+    uint64 low=3;
+    uint64 mid=4;
+    uint64 high=5;
+}
+
+
+message CResponse{
+    string res=1;
+}
+message DResponse{
+
+}
+message WRResponse{
+    uint64 res=1;
+    string err=2;
+}
+
+service Token{
+    rpc createToken (Key) returns (CResponse) {}
+    rpc writeToken (Wkey) returns (WRResponse) {}
+    rpc readToken (Key) returns (WRResponse) {}
+    rpc dropToken (Key) returns (DResponse) {}    
+}
